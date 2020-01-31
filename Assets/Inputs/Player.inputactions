@@ -1,0 +1,91 @@
+{
+    "name": "Player",
+    "maps": [
+        {
+            "name": "Menu",
+            "id": "28ee804a-afea-4134-8e60-7f3f2abba041",
+            "actions": [
+                {
+                    "name": "Join",
+                    "type": "Value",
+                    "id": "d497e05b-70d6-4b32-9c2d-d7180f48c9f8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Ready",
+                    "type": "Button",
+                    "id": "da8c8cd8-061a-4ce2-86f2-0ebc57a27a5a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "898cf9fb-154d-48cc-8f48-def732fa549e",
+                    "path": "<XInputController>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Join",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d8426d42-51ba-4a08-b0fe-9942b0a43b08",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ready",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Player",
+            "id": "83f7a983-28cd-4637-b268-a9e9ecafd387",
+            "actions": [
+                {
+                    "name": "Shot",
+                    "type": "Button",
+                    "id": "77863cde-cfa5-4e23-869a-4f67e78d6377",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e5e9bcbb-a3f5-4d9c-b593-85c088b820bb",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Xbox",
+            "bindingGroup": "Xbox",
+            "devices": [
+                {
+                    "devicePath": "<XInputController>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
