@@ -19,7 +19,7 @@ public class PartActionDisplay : MonoBehaviour
 
     // Start is called before the first frame update
     void OnEnable(){
-        basePosition = transform.position;
+        basePosition = transform.GetComponent<RectTransform>().position;
         gameObject.GetComponent<TextMeshPro>().text = textToDisplay;
         switch(damageType){
             case PartsManager.DAMAGETYPE.HEAL : 
@@ -30,14 +30,15 @@ public class PartActionDisplay : MonoBehaviour
             break;
         }
         Sequence s = DOTween.Sequence();
-        s.Append(transform.DOMoveY(transform.position.y + yOffset,duration))
-        .Join(GetComponent<TextMeshPro>().DOFade(0,duration));
-        StartCoroutine(AutoDeactivate(1f));
+        s.Append(transform.DOMoveY(transform.GetComponent<RectTransform>().position.y + yOffset, duration))
+        .Join(GetComponent<TextMeshPro>().DOFade(0,duration)).OnComplete(() =>
+            {
+                AutoDeactivate();
+            });
     }
 
-    IEnumerator AutoDeactivate(float seconds){
-        yield return new WaitForSeconds(seconds);
-        transform.position = basePosition;
+    public void AutoDeactivate(){
+        gameObject.GetComponent<RectTransform>().position = basePosition;
         gameObject.GetComponent<TextMeshPro>().color = new Color(255,255,255,1);
         gameObject.SetActive(false);
     }
