@@ -113,6 +113,7 @@ public class QTEManager : MonoBehaviour
     }
     void UpdateTargetedpart(PartsManager.PARTS part){
         if(QTE.Count == 0){
+            HideAimMessag();
             ReversePlayerUi();
             spaceShipControls.QuitQTE(part,combo);
             combo = 0;
@@ -120,6 +121,9 @@ public class QTEManager : MonoBehaviour
     }
     void UpdateQte(Action.inputs action){
         if(QTE.Count > 0){
+            if(QTE.Count == 1){
+                ShowAimMessage();
+            }
             if(QTE[0].GetComponent<Action>().input == action){
                 combo++;
                 QTE.RemoveAt(0);
@@ -128,7 +132,19 @@ public class QTEManager : MonoBehaviour
             else{
                 combo = 0;
             }
+        }else{
+            
         }
+    }
+
+    public void ShowAimMessage(){
+        Transform playerUI = GameManager.instance.PlayersUIs[gameObject.GetComponent<Player>().id].transform;
+        playerUI.Find("QTEOpen/Message").gameObject.SetActive(true);
+    }
+
+    public void HideAimMessag(){
+        Transform playerUI = GameManager.instance.PlayersUIs[gameObject.GetComponent<Player>().id].transform;
+        playerUI.Find("QTEOpen/Message").gameObject.SetActive(false); 
     }
 }
 
