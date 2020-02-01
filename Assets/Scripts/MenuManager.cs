@@ -33,9 +33,7 @@ public class MenuManager : MonoBehaviour
     void SwapPlayerControls(){
         foreach(GameObject player in players){
             Destroy(player.GetComponent<MenuNavigation>());
-            Debug.Log(player.GetComponent<PlayerInput>().currentActionMap);
             player.GetComponent<PlayerInput>().SwitchCurrentActionMap("Player");
-            Debug.Log(player.GetComponent<PlayerInput>().currentActionMap);
         }
     }
 }

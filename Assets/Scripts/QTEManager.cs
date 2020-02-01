@@ -11,6 +11,7 @@ public class QTEManager : MonoBehaviour
     public float QTE_Length = 6;
     public GameObject[] actionsDataBase;
     public List<GameObject> QTE = new List<GameObject>();
+    int combo;
     void Awake(){
         spaceShipControls = GetComponent<SpaceShipControls>();
     }
@@ -43,15 +44,34 @@ public class QTEManager : MonoBehaviour
     void OnX(){
         UpdateQte(Action.inputs.X);
     }
-
+    void OnAimEngine(){
+        UpdateTargetedpart(PartsManager.PARTS.ENGINE);    
+    }
+    void OnAimCockpit(){
+        UpdateTargetedpart(PartsManager.PARTS.COCKPIT);    
+    }
+    void OnAimCannon(){
+        UpdateTargetedpart(PartsManager.PARTS.CANNON);    
+    }
+    void OnAimRepairModule(){
+        UpdateTargetedpart(PartsManager.PARTS.REPAIR_MODULE);    
+    }
+    void UpdateTargetedpart(PartsManager.PARTS part){
+        if(QTE.Count == 0){
+            spaceShipControls.QuitQTE(part,combo);
+            combo = 0;
+        }
+    }
     void UpdateQte(Action.inputs action){
-        if(QTE[0].GetComponent<Action>().input == action){
-            QTE.RemoveAt(0);
-            if(QTE.Count == 0){
-                spaceShipControls.QuitQTE();
+        if(QTE.Count > 0){
+            if(QTE[0].GetComponent<Action>().input == action){
+                combo++;
+                QTE.RemoveAt(0);
+            }
+            else{
+                combo = 0;
             }
         }
-        
     }
 }
 

@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerDDOL : MonoBehaviour
+public class Player : MonoBehaviour
 {
+    public int id;
+    public int actionAmount;
     void Awake(){
         DontDestroyOnLoad(gameObject);
     }
