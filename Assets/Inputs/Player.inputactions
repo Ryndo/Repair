@@ -134,7 +134,7 @@
                     "type": "Button",
                     "id": "018c9092-863a-4c0e-80b0-47d3dbf449c2",
                     "expectedControlType": "Button",
-                    "processors": "",
+                    "processors": "AxisDeadzone(min=0.3)",
                     "interactions": ""
                 },
                 {
@@ -142,7 +142,7 @@
                     "type": "Button",
                     "id": "e626effa-4cee-49a3-86de-a5e644795594",
                     "expectedControlType": "Button",
-                    "processors": "",
+                    "processors": "AxisDeadzone(min=0.3)",
                     "interactions": ""
                 },
                 {
@@ -150,7 +150,7 @@
                     "type": "Button",
                     "id": "0c3ed7ea-8215-457d-911c-1ec2dc5ca25d",
                     "expectedControlType": "Button",
-                    "processors": "",
+                    "processors": "AxisDeadzone(min=0.3)",
                     "interactions": ""
                 },
                 {
@@ -158,7 +158,7 @@
                     "type": "Button",
                     "id": "6afb6b11-3947-4222-80d0-67de23a8a7dc",
                     "expectedControlType": "Button",
-                    "processors": "",
+                    "processors": "AxisDeadzone(min=0.3)",
                     "interactions": ""
                 }
             ],
