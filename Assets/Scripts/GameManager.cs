@@ -33,13 +33,14 @@ public class GameManager : MonoBehaviour
     void Update(){
         switch(gameState){
             case GAME_STATES.BEFORE_GAME :
+                //MoveCamera();
                 //Countdown();
             break;
             case GAME_STATES.IN_GAME :
 
             break;
             case GAME_STATES.AFTER_GAME :
-
+                print("Game OVER");
             break;
 
         }

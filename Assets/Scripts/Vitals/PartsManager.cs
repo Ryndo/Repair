@@ -26,10 +26,11 @@ public class PartsManager : MonoBehaviour
 
     public void InitPlayerParts(){
         for (int i = 0; i < 2; i++){
-            playersPartsDic[i][PARTS.ENGINE] = 100;
-            playersPartsDic[i][PARTS.REPAIR_MODULE] = 100;
-            playersPartsDic[i][PARTS.COCKPIT] = 100;
-            playersPartsDic[i][PARTS.CANNON] = 100;
+            playersPartsDic.Add(i, new Dictionary<PARTS, int>());
+            playersPartsDic[i][PARTS.ENGINE] = 5;
+            playersPartsDic[i][PARTS.REPAIR_MODULE] = 5;
+            playersPartsDic[i][PARTS.COCKPIT] = 5;
+            playersPartsDic[i][PARTS.CANNON] = 5;
         }
     }
 
@@ -43,7 +44,7 @@ public class PartsManager : MonoBehaviour
     public void DamagePart(int playerID, PARTS part, int damages){
         playersPartsDic[playerID][part] -= damages;
         if(playersPartsDic[playerID][part] <= 0){
-            //GameOver();
+            GameManager.instance.gameState = GameManager.GAME_STATES.AFTER_GAME;
         }
     }
 
@@ -56,9 +57,4 @@ public class PartsManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
