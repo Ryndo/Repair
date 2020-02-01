@@ -58,6 +58,22 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "b948b31a-b60b-42de-91d3-cca52b015d42",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Repair",
+                    "type": "Button",
+                    "id": "25dfe598-5b95-47be-97f0-eb4880748346",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -69,6 +85,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Shot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a5c70394-489b-41ce-a89b-1f743563c987",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9b05c21c-f414-4f7a-8bfa-1a6f2c01a508",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Repair",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -107,6 +145,38 @@
                     "type": "Button",
                     "id": "65e04376-d914-4091-8e84-07042e18fd54",
                     "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "AimEngine",
+                    "type": "Button",
+                    "id": "018c9092-863a-4c0e-80b0-47d3dbf449c2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "AimCockpit",
+                    "type": "Button",
+                    "id": "e626effa-4cee-49a3-86de-a5e644795594",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "AimCannon",
+                    "type": "Button",
+                    "id": "0c3ed7ea-8215-457d-911c-1ec2dc5ca25d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "AimRepairModule",
+                    "type": "Button",
+                    "id": "6afb6b11-3947-4222-80d0-67de23a8a7dc",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 }
@@ -153,6 +223,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "X",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9f6a123e-797b-4e76-bcd8-ae48b4e14d81",
+                    "path": "<Gamepad>/leftStick/left",
+                    "interactions": "",
+                    "processors": "StickDeadzone(min=0.5,max=1)",
+                    "groups": "",
+                    "action": "AimEngine",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "60d92605-7fcd-4367-8ea7-6692c94ca980",
+                    "path": "<Gamepad>/leftStick/up",
+                    "interactions": "",
+                    "processors": "StickDeadzone(min=0.5,max=1)",
+                    "groups": "",
+                    "action": "AimCockpit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "725125d6-b77c-4c3d-a49b-95930c0a1465",
+                    "path": "<Gamepad>/leftStick/right",
+                    "interactions": "",
+                    "processors": "StickDeadzone(min=0.5,max=1)",
+                    "groups": "",
+                    "action": "AimCannon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "787e11ec-5f8d-48f2-8c13-9930482608da",
+                    "path": "<Gamepad>/leftStick/down",
+                    "interactions": "",
+                    "processors": "StickDeadzone(min=0.5,max=1)",
+                    "groups": "",
+                    "action": "AimRepairModule",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
