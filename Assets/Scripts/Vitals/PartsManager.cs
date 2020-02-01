@@ -61,10 +61,10 @@ public class PartsManager : MonoBehaviour
     }
 
     public void DamagePart(int playerID, PARTS part, int damages){
-        Transform cannon = playerID == 0 ? spaceShips[1].cannon : spaceShips[1].cannon;
+/*         Transform cannon = playerID == 0 ? spaceShips[1].cannon : spaceShips[1].cannon;
         if(part == PARTS.CANNON){
             cannon.LookAt(spaceShips[playerID].cannon.position);
-        }
+        } */
         int damagesToApply = damages;
 
         bool hasCritted = false;

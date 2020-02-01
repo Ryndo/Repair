@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  actionAmount: 6
+  actionAmount: 10
 --- !u!114 &1748800486864214591
 MonoBehaviour:
   m_ObjectHideFlags: 0
