@@ -27,10 +27,10 @@ public class PartsManager : MonoBehaviour
     public void InitPlayerParts(){
         for (int i = 0; i < 2; i++){
             playersPartsDic.Add(i, new Dictionary<PARTS, int>());
-            playersPartsDic[i][PARTS.ENGINE] = 5;
-            playersPartsDic[i][PARTS.REPAIR_MODULE] = 5;
-            playersPartsDic[i][PARTS.COCKPIT] = 5;
-            playersPartsDic[i][PARTS.CANNON] = 5;
+            playersPartsDic[i][PARTS.ENGINE] = 100;
+            playersPartsDic[i][PARTS.REPAIR_MODULE] = 100;
+            playersPartsDic[i][PARTS.COCKPIT] = 100;
+            playersPartsDic[i][PARTS.CANNON] = 100;
         }
     }
 
