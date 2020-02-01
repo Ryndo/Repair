@@ -16,8 +16,8 @@ public class RoadRepeater : MonoBehaviour
     // Update is called once per frame
     void Update(){
         gameObject.transform.Translate(new Vector3(0,0,-1) * speed * Time.deltaTime);
-        if(gameObject.transform.position.z <= -75){
-            gameObject.transform.localPosition = new Vector3(0,0,75);
+        if(gameObject.transform.position.z <= -90){
+            gameObject.transform.localPosition = new Vector3(0,0,90);
         }
     }
 }
