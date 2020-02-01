@@ -10,11 +10,15 @@ public class ShipMovement : MonoBehaviour
     public float duration = 3f;
     public float speedOffset = 1f;
     public float accelerationDuration = 3f;
+    public float rotationOffsetY = 5f;
+    public float rotationDurationY = 2f;
+    public float rotationOffsetZ = 5f;
 
     // Start is called before the first frame update
     void Start(){
-        gameObject.transform.DOLocalMoveY(transform.position.y + floatOffset, duration).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
-        gameObject.transform.DOLocalMoveX(transform.position.x + speedOffset, accelerationDuration).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+        gameObject.transform.DOMoveY(transform.position.y + floatOffset, duration).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+        gameObject.transform.DOMoveZ(transform.position.z + speedOffset, accelerationDuration).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+        gameObject.transform.DORotate(new Vector3(transform.rotation.x,transform.rotation.y + rotationOffsetY,transform.rotation.z + rotationOffsetZ),rotationDurationY).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
     }
 
     // Update is called once per frame

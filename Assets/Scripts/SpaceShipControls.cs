@@ -47,11 +47,8 @@ public class SpaceShipControls : MonoBehaviour
         int amount = player.actionAmount + combo;
         if(stance == Stance.Attack){
             PartsManager.instance.DamagePart(enemyId,targetedPart,amount);
-            //partsManager.DamagePart(enemyId,targetedPart,amount);
-        }
-        else{
+        }else{
             PartsManager.instance.RepairPart(player.id,targetedPart,amount);
-            //partsManager.RepairPart(player.id,targetedPart,amount);
         }
     }
 }
