@@ -35,13 +35,24 @@ public class QTEManager : MonoBehaviour
     }
 
     void DisplayQTE(){
-        int basePos = -3;
-        foreach (GameObject g in QTE){
-            Transform parent = GameManager.instance.QTEZones[gameObject.GetComponent<Player>().id].transform;
-            GameObject touche = Instantiate(g, parent.position,parent.rotation,GameManager.instance.QTEZones[gameObject.GetComponent<Player>().id].transform);
-            touche.transform.Rotate(new Vector3(0,-90,0));
-            touche.transform.position = new Vector3(touche.transform.position.x, touche.transform.position.y, basePos);
-            basePos++;
+        Transform parent = GameManager.instance.QTEZones[gameObject.GetComponent<Player>().id].transform;
+        List<Transform> slots = new List<Transform>();
+        foreach(Transform slot in parent){
+            slots.Add(slot);        
+        }
+        slots.Reverse();
+        List<GameObject> QTE_Reversed = new List<GameObject>(QTE);
+        QTE_Reversed.Reverse();
+        for(int i = 0; i < QTE.Count ; i++){
+            if(slots[i].childCount == 0){
+                GameObject touche = Instantiate(QTE_Reversed[i],slots[i].transform.position,slots[i].transform.rotation,slots[i]);
+            }
+        }       
+        for(int i = QTE.Count; i < slots.Count ; i++){
+            if(slots[i].transform.childCount > 0){
+                Debug.Log(QTE.Count);
+                Destroy(slots[i].transform.GetChild(0).gameObject);
+            }  
         }
     }
 
@@ -80,6 +91,7 @@ public class QTEManager : MonoBehaviour
             if(QTE[0].GetComponent<Action>().input == action){
                 combo++;
                 QTE.RemoveAt(0);
+                DisplayQTE();
             }
             else{
                 combo = 0;
