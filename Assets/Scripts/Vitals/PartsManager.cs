@@ -14,6 +14,8 @@ public class PartsManager : MonoBehaviour
 
     public static PartsManager instance;
     public Dictionary<int,Dictionary<PARTS,int>> playersPartsDic = new Dictionary<int, Dictionary<PARTS, int>>();
+    [SerializeField]
+    public SpaceShip[] spaceShips;
 
     void Awake(){
         if(instance == null && instance != this){
@@ -42,6 +44,10 @@ public class PartsManager : MonoBehaviour
     }
 
     public void DamagePart(int playerID, PARTS part, int damages){
+        Transform cannon = playerID == 0 ? spaceShips[1].cannon : spaceShips[1].cannon;
+        if(part == PARTS.CANNON){
+            cannon.LookAt(spaceShips[playerID].cannon.position);
+        }
         int damagesToApply = damages;
 
         //Critical chance
@@ -76,5 +82,18 @@ public class PartsManager : MonoBehaviour
             playersPartsDic[playerID][part] += repairAmount;
         }
     }
+
+}
+[System.Serializable]
+public class SpaceShip 
+{
+    [SerializeField]
+    public Transform cockpit;
+    [SerializeField]
+    public Transform cannon;
+    [SerializeField]
+    public Transform repairModule;
+    [SerializeField]
+    public Transform engine;
 
 }

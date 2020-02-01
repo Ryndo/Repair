@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class MenuManager : MonoBehaviour
     bool alreadyStarting;
     public List<GameObject> players = new List<GameObject>();
     public int idToGive = 0;
+    public Image[] playersIcon;
 
     void Awake(){
         if(instance == null && instance != this){
@@ -23,7 +25,9 @@ public class MenuManager : MonoBehaviour
 
     void OnPlayerJoined(PlayerInput p){
        p.gameObject.GetComponent<Player>().id = idToGive;
+       playersIcon[idToGive].transform.gameObject.SetActive(true);
        idToGive++;
+       
     }
 
     void Update(){
