@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
 
 public class MenuManager : MonoBehaviour
 {
@@ -17,6 +18,10 @@ public class MenuManager : MonoBehaviour
     public Image[] PlayersJoinedIcons;
     public Image[] PlayersReadyIcons;
     public bool[] playersPressingReady;
+    public TextMeshProUGUI joinMessage;
+    public TextMeshProUGUI holdMessage;
+    public Image logo;
+
 
     void Awake(){
         if(instance == null && instance != this){
@@ -32,16 +37,21 @@ public class MenuManager : MonoBehaviour
             image.transform.DOMoveY(image.transform.position.y + 3,1.5f).SetEase(Ease.InOutSine).SetLoops(-1,LoopType.Yoyo);
             image.DOFade(.2f,1f).SetEase(Ease.InOutSine).SetLoops(-1,LoopType.Yoyo);
         }
+        joinMessage.transform.DOMoveY(joinMessage.transform.position.y + 1,1.5f).SetEase(Ease.InOutSine).SetLoops(-1,LoopType.Yoyo);
+        logo.transform.DOMoveY(logo.transform.position.y + 1f,1.5f).SetEase(Ease.InOutSine).SetLoops(-1,LoopType.Yoyo);
     }
 
     void OnPlayerJoined(PlayerInput p){
        p.gameObject.GetComponent<Player>().id = idToGive;
-       PlayersAwaitingIcons[idToGive].transform.gameObject.SetActive(false);
+    StartCoroutine(FadeController());
        PlayersJoinedIcons[idToGive].transform.gameObject.SetActive(true);
        PlayersJoinedIcons[idToGive].transform.DOMoveY(PlayersJoinedIcons[idToGive].transform.position.y + 3,1.5f).SetEase(Ease.InOutSine).SetLoops(-1,LoopType.Yoyo);
        PlayersReadyIcons[idToGive].transform.gameObject.SetActive(true);
        PlayersReadyIcons[idToGive].transform.DOMoveY(PlayersReadyIcons[idToGive].transform.position.y + 3,1.5f).SetEase(Ease.InOutSine).SetLoops(-1,LoopType.Yoyo);
        idToGive++;
+       if(idToGive ==2){
+           StartCoroutine(FadeMessages());
+       }
        
     }
 
@@ -49,10 +59,41 @@ public class MenuManager : MonoBehaviour
         if(readyCount == 2 && !alreadyStarting){
             alreadyStarting = true;
             SwapPlayerControls();
-            SceneManager.LoadScene("Main");
+            StartCoroutine(FadeCanvas());
         }
+        else if(idToGive == 2){
+            
             FillIcons();
+        }
+    IEnumerator FadeCanvas(){
+        for(int i = 0 ; i <2 ; i++){
+            PlayersJoinedIcons[i].gameObject.SetActive(false);
+            PlayersReadyIcons[i].DOFade(0,.4f).SetEase(Ease.InOutSine);
+            PlayersReadyIcons[i].transform.DOScale(joinMessage.transform.localScale * 2,.4f).SetEase(Ease.InOutSine);
+            //PlayersReadyIcons[i].transform.gameObject.SetActive(false);
+        }
+        holdMessage.transform.DOScale(joinMessage.transform.localScale * 2f,.4f).SetEase(Ease.InOutSine);
+        logo.transform.DOScale(joinMessage.transform.localScale * 2f,.4f).SetEase(Ease.InOutSine);
+        logo.DOFade(0,.4f).SetEase(Ease.InOutSine).WaitForCompletion();
+        holdMessage.DOFade(0,.4f).SetEase(Ease.InOutSine);
+        yield return Camera.main.DOFieldOfView(180,1f).WaitForCompletion();
+        SceneManager.LoadScene("Main");
+        yield return null;
         
+    }        
+        
+    }
+    IEnumerator FadeController(){
+        int id = idToGive;
+        PlayersAwaitingIcons[id].DOFade(0,.6f).SetEase(Ease.InOutSine);
+        yield return PlayersAwaitingIcons[id].transform.DOScale(joinMessage.transform.localScale * 1.4f,.6f).SetEase(Ease.InOutSine).WaitForCompletion();
+        PlayersAwaitingIcons[id].transform.gameObject.SetActive(false);
+    }
+    IEnumerator FadeMessages(){
+        joinMessage.transform.DOScale(joinMessage.transform.localScale * 1.4f,.6f).SetEase(Ease.InOutSine);
+        yield return joinMessage.DOFade(0,.6f).SetEase(Ease.InOutSine).WaitForCompletion();
+        holdMessage.transform.DOMoveY(joinMessage.transform.position.y + 1,1.5f).SetEase(Ease.InOutSine).SetLoops(-1,LoopType.Yoyo);
+        holdMessage.DOFade(1,.6f).SetEase(Ease.InOutSine);
     }
 
     public void ToggleReady(bool readyState){
