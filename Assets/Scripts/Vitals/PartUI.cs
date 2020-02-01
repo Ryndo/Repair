@@ -17,6 +17,6 @@ public class PartUI : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
-        gameObject.GetComponent<TextMeshPro>().text = PartsManager.instance.playersPartsDic[playerID][part].ToString() + "%";
+        gameObject.GetComponent<TextMeshPro>().text = PartsManager.instance.playersPartsDic[playerID][part].ToString();
     }
 }

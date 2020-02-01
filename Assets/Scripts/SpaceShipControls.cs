@@ -50,7 +50,8 @@ public class SpaceShipControls : MonoBehaviour
             //partsManager.DamagePart(enemyId,targetedPart,amount);
         }
         else{
-            partsManager.RepairPart(player.id,targetedPart,amount);
+            PartsManager.instance.RepairPart(player.id,targetedPart,amount);
+            //partsManager.RepairPart(player.id,targetedPart,amount);
         }
     }
 }
