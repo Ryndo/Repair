@@ -25,12 +25,12 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.43
+    m_Value: 0.41
     min: 0
     max: 1
   smoothness:
     m_OverrideState: 1
-    m_Value: 0.25
+    m_Value: 0.14
     min: 0.01
     max: 1
   rounded:
@@ -52,7 +52,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.38
+    m_Value: 0.153
     min: 0
     max: 1
 --- !u!114 &-2274912136991078060
@@ -82,7 +82,7 @@ MonoBehaviour:
     max: 1
   clamp:
     m_OverrideState: 1
-    m_Value: 0.05
+    m_Value: 0.023
     min: 0
     max: 0.2
 --- !u!114 &-1353463844279321526
@@ -137,18 +137,18 @@ MonoBehaviour:
   m_AdvancedMode: 0
   mode:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 2
   gaussianStart:
     m_OverrideState: 1
-    m_Value: 193.8
+    m_Value: 500
     min: 0
   gaussianEnd:
     m_OverrideState: 1
-    m_Value: 300.6
+    m_Value: 1000
     min: 0
   gaussianMaxRadius:
     m_OverrideState: 1
-    m_Value: 1.02
+    m_Value: 0.943
     min: 0.5
     max: 1.5
   highQualitySampling:
@@ -199,15 +199,15 @@ MonoBehaviour:
   m_AdvancedMode: 0
   threshold:
     m_OverrideState: 1
-    m_Value: 0.5
+    m_Value: 0.9
     min: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 8.22
+    m_Value: 16.16
     min: 0
   scatter:
     m_OverrideState: 1
-    m_Value: 0.12
+    m_Value: 0.201
     min: 0
     max: 1
   clamp:
