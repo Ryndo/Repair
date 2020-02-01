@@ -12,6 +12,7 @@ public class QTEManager : MonoBehaviour
     public GameObject[] actionsDataBase;
     public List<GameObject> QTE = new List<GameObject>();
     int combo;
+
     void Awake(){
         spaceShipControls = GetComponent<SpaceShipControls>();
     }
@@ -30,6 +31,18 @@ public class QTEManager : MonoBehaviour
             actionsPool.Remove(actionsPool[randomInt]);
         }
         QTE = newQTE;
+        DisplayQTE();
+    }
+
+    void DisplayQTE(){
+        int basePos = -3;
+        foreach (GameObject g in QTE){
+            Transform parent = GameManager.instance.QTEZones[gameObject.GetComponent<Player>().id].transform;
+            GameObject touche = Instantiate(g, parent.position,parent.rotation,GameManager.instance.QTEZones[gameObject.GetComponent<Player>().id].transform);
+            touche.transform.Rotate(new Vector3(0,-90,0));
+            touche.transform.position = new Vector3(touche.transform.position.x, touche.transform.position.y, basePos);
+            basePos++;
+        }
     }
 
     void OnA(){

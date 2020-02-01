@@ -10,6 +10,7 @@ public class MenuManager : MonoBehaviour
     public float readyCount;
     bool alreadyStarting;
     public List<GameObject> players = new List<GameObject>();
+    public int idToGive = 0;
 
     void Awake(){
         if(instance == null && instance != this){
@@ -19,6 +20,12 @@ public class MenuManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    void OnPlayerJoined(PlayerInput p){
+       p.gameObject.GetComponent<Player>().id = idToGive;
+       idToGive++;
+    }
+
     void Update(){
         if(readyCount == 2 && !alreadyStarting){
             alreadyStarting = true;
@@ -30,6 +37,7 @@ public class MenuManager : MonoBehaviour
     public void ToggleReady(bool readyState){
         readyCount += readyState ?  1 : - 1;
     }
+
     void SwapPlayerControls(){
         foreach(GameObject player in players){
             Destroy(player.GetComponent<MenuNavigation>());

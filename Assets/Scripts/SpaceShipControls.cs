@@ -7,8 +7,8 @@ public class SpaceShipControls : MonoBehaviour
 {
     QTEManager qte_Manager;
     PlayerInput playerInput;
-    enum Stance { Attack , Repair};
-    Stance stance;
+    public enum Stance { Idle, Attack , Repair};
+    public Stance stance;
     PartsManager partsManager;
     Player player;
     int enemyId;
@@ -16,10 +16,14 @@ public class SpaceShipControls : MonoBehaviour
     void Awake(){
         qte_Manager = GetComponent<QTEManager>();
         playerInput = GetComponent<PlayerInput>();
-        partsManager = PartsManager.instance;
         player = GetComponent<Player>();
         enemyId = player.id == 0 ? 1 : 0;
     }
+
+    void Start(){
+        partsManager = PartsManager.instance;
+    }
+
     void StartQTE(){
         playerInput.SwitchCurrentActionMap("QTE");
         qte_Manager.GenerateQTE();
@@ -42,7 +46,8 @@ public class SpaceShipControls : MonoBehaviour
     void ExecuteAction(PartsManager.PARTS targetedPart,int combo){
         int amount = player.actionAmount + combo;
         if(stance == Stance.Attack){
-            partsManager.DamagePart(enemyId,targetedPart,amount);
+            PartsManager.instance.DamagePart(enemyId,targetedPart,amount);
+            //partsManager.DamagePart(enemyId,targetedPart,amount);
         }
         else{
             partsManager.RepairPart(player.id,targetedPart,amount);

@@ -78,6 +78,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 928ae463b923de4459dd7e9b2302aa7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
+  actionAmount: 6
 --- !u!114 &1748800486864214591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,3 +123,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6b9425bf9d2d7f43a3ed008cfdebfee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stance: 0

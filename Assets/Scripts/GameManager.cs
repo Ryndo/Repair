@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
 
     public GAME_STATES gameState;
 
+    public GameObject[] QTEZones;
+
     public static GameManager instance;
 
     void Awake(){

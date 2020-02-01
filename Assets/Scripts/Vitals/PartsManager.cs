@@ -14,9 +14,6 @@ public class PartsManager : MonoBehaviour
 
     public static PartsManager instance;
     public Dictionary<int,Dictionary<PARTS,int>> playersPartsDic = new Dictionary<int, Dictionary<PARTS, int>>();
-    public float hitPercent = 90f;
-    public float critPercent = 10f;
-    public int criticalBonusDamages = 5;
 
     void Awake(){
         if(instance == null && instance != this){
@@ -48,18 +45,24 @@ public class PartsManager : MonoBehaviour
         int damagesToApply = damages;
 
         //Critical chance
-        if(Random.Range(0,100) <= critPercent){
-            damagesToApply += criticalBonusDamages;
+        float critNumber = Random.Range(0,100);
+        if(critNumber <= ShipsStats.instance.critPercent){
+            print("crit");
+            damagesToApply += ShipsStats.instance.criticalBonusDamages;
             //ShowCrit();
         }
 
+        float hitNumber = Random.Range(0,100);
         //Hit chance
-        if(Random.Range(0,100) <= hitPercent){
+        if(hitNumber >= ShipsStats.instance.hitPercent){
+            print("miss");
             damagesToApply = 0;
             //ShowMiss();
         }
 
-        playersPartsDic[playerID][part] -= damages;
+        print(damagesToApply + " damages");
+
+        playersPartsDic[playerID][part] -= damagesToApply;
         if(playersPartsDic[playerID][part] <= 0){
             GameManager.instance.gameState = GameManager.GAME_STATES.AFTER_GAME;
         }
