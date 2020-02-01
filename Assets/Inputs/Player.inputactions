@@ -6,14 +6,6 @@
             "id": "28ee804a-afea-4134-8e60-7f3f2abba041",
             "actions": [
                 {
-                    "name": "Join",
-                    "type": "Button",
-                    "id": "d497e05b-70d6-4b32-9c2d-d7180f48c9f8",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "Ready",
                     "type": "Button",
                     "id": "da8c8cd8-061a-4ce2-86f2-0ebc57a27a5a",
@@ -25,20 +17,9 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "898cf9fb-154d-48cc-8f48-def732fa549e",
-                    "path": "<XInputController>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Join",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "d8426d42-51ba-4a08-b0fe-9942b0a43b08",
-                    "path": "<Gamepad>/start",
-                    "interactions": "",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "",
                     "action": "Ready",

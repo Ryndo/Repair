@@ -6,12 +6,16 @@ using UnityEngine.SceneManagement;
 public class MenuNavigation : MonoBehaviour
 {
     bool isReady;
+    Player player;
+
     void Awake(){
         MenuManager.instance.players.Add(gameObject);
+        player = GetComponent<Player>();
+    }
+    void Start(){
+        
     }
     public void OnReady(){
-        isReady = isReady ? false : true;
-        MenuManager.instance.ToggleReady(isReady);
-        
+        MenuManager.instance.playersPressingReady[player.id] = !MenuManager.instance.playersPressingReady[player.id];
     }
 }
