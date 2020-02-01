@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using TMPro;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class QTEManager : MonoBehaviour
 {
@@ -47,13 +48,43 @@ public class QTEManager : MonoBehaviour
             if(slots[i].childCount == 0){
                 GameObject touche = Instantiate(QTE_Reversed[i],slots[i].transform.position,slots[i].transform.rotation,slots[i]);
             }
-        }       
+        }
+
+        ModifyPlayerUI();     
+
         for(int i = QTE.Count; i < slots.Count ; i++){
             if(slots[i].transform.childCount > 0){
-                Debug.Log(QTE.Count);
+                //Debug.Log(QTE.Count);
                 Destroy(slots[i].transform.GetChild(0).gameObject);
             }  
         }
+    }
+
+    public void ModifyPlayerUI(){
+        Transform playerUI = GameManager.instance.PlayersUIs[gameObject.GetComponent<Player>().id].transform;
+
+        //Show QTE OPEN
+        playerUI.Find("QTEOpen").gameObject.SetActive(true);
+
+        //Gray out unused icon
+        switch(gameObject.GetComponent<SpaceShipControls>().stance){
+            case SpaceShipControls.Stance.Attack :
+                playerUI.transform.Find("QTEOpen/IconAttack").GetComponent<Image>().color = GameManager.instance.activePlayersColors[gameObject.GetComponent<Player>().id];
+                playerUI.transform.Find("QTEOpen/IconHeal").GetComponent<Image>().color = new Color(255,255,255,.15f);
+            break;
+            case SpaceShipControls.Stance.Repair :
+                playerUI.transform.Find("QTEOpen/IconHeal").GetComponent<Image>().color = GameManager.instance.activePlayersColors[gameObject.GetComponent<Player>().id];
+                playerUI.transform.Find("QTEOpen/IconAttack").GetComponent<Image>().color = new Color(255,255,255,.15f);
+            break;
+        }
+        
+    }
+
+    public void ReversePlayerUi(){
+        Transform playerUI = GameManager.instance.PlayersUIs[gameObject.GetComponent<Player>().id].transform;
+
+        //Hide QTE OPEN
+        playerUI.Find("QTEOpen").gameObject.SetActive(false);
     }
 
     void OnA(){
@@ -82,6 +113,7 @@ public class QTEManager : MonoBehaviour
     }
     void UpdateTargetedpart(PartsManager.PARTS part){
         if(QTE.Count == 0){
+            ReversePlayerUi();
             spaceShipControls.QuitQTE(part,combo);
             combo = 0;
         }

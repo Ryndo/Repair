@@ -15,6 +15,11 @@ public class GameManager : MonoBehaviour
 
     public GameObject[] QTEZones;
 
+    [Space]
+    [Header("Ui Hide / Show")]  
+    public GameObject[] PlayersUIs;
+    public Color[] activePlayersColors;
+
     public static GameManager instance;
 
     void Awake(){
