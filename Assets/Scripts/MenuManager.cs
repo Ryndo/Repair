@@ -23,7 +23,7 @@ public class MenuManager : MonoBehaviour
         if(readyCount == 2 && !alreadyStarting){
             alreadyStarting = true;
             SwapPlayerControls();
-            SceneManager.LoadScene("EmptyTestScene");
+            SceneManager.LoadScene("Main");
         }
     }
 
@@ -33,7 +33,6 @@ public class MenuManager : MonoBehaviour
     void SwapPlayerControls(){
         foreach(GameObject player in players){
             Destroy(player.GetComponent<MenuNavigation>());
-            player.AddComponent<SpaceShipControls>();
             Debug.Log(player.GetComponent<PlayerInput>().currentActionMap);
             player.GetComponent<PlayerInput>().SwitchCurrentActionMap("Player");
             Debug.Log(player.GetComponent<PlayerInput>().currentActionMap);
