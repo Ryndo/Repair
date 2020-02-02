@@ -83,7 +83,8 @@ public class PartsManager : MonoBehaviour
         cannon.Rotate(0,-180,0);
         GameObject laserGO = Instantiate(laser,spaceShips[id].firePoint.position,spaceShips[id].firePoint.rotation,spaceShips[id].firePoint);
         laserGO.GetComponentInChildren<LineRenderer>().SetPosition(0,spaceShips[id].firePoint.position);
-        laserGO.GetComponentInChildren<LineRenderer>().SetPosition(1,target);
+        laserGO.GetComponentInChildren<LineRenderer>().SetPosition(1,Vector3.Lerp(spaceShips[id].firePoint.position,target,.5f));
+        StartCoroutine(LaserAnimation(.18f,laserGO.GetComponentInChildren<LineRenderer>(),target,spaceShips[id].firePoint.position));
         int damagesToApply = damages;
 
         bool hasCritted = false;
@@ -125,6 +126,21 @@ public class PartsManager : MonoBehaviour
         if(destroyedParts == 4){
             GameManager.instance.winner = playerID == 0 ? 1 : 0;
             GameManager.instance.gameState = GameManager.GAME_STATES.AFTER_GAME;
+        }
+    }
+
+    IEnumerator LaserAnimation(float time,LineRenderer line,Vector3 start, Vector3 end){
+        float currentTime = time;
+        while(currentTime > 0){
+            line.SetPosition(1,Vector3.Lerp(start,end,(currentTime/time)));
+            currentTime -= Time.deltaTime;
+            yield return null;
+        }
+        currentTime = 0;
+        while(currentTime < time){
+            line.SetPosition(0,Vector3.Lerp(end,start,(currentTime/time)));
+            currentTime += Time.deltaTime;
+            yield return null;
         }
     }
 
