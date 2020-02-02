@@ -62,9 +62,11 @@ public class MenuManager : MonoBehaviour
             StartCoroutine(FadeCanvas());
         }
         else if(idToGive == 2){
-            
             FillIcons();
         }
+        
+        
+    }
     IEnumerator FadeCanvas(){
         for(int i = 0 ; i <2 ; i++){
             PlayersJoinedIcons[i].gameObject.SetActive(false);
@@ -76,11 +78,10 @@ public class MenuManager : MonoBehaviour
         logo.transform.DOScale(joinMessage.transform.localScale * 2f,.4f).SetEase(Ease.InOutSine);
         logo.DOFade(0,.4f).SetEase(Ease.InOutSine).WaitForCompletion();
         holdMessage.DOFade(0,.4f).SetEase(Ease.InOutSine);
-        yield return Camera.main.DOFieldOfView(180,1f).WaitForCompletion();
-        SceneManager.LoadScene("Main");
+        yield return Camera.main.DOFieldOfView(180,1f);
+        BlackFade.instance.FadeToScene("main");
+        this.enabled = false;
         yield return null;
-        
-    }        
         
     }
     IEnumerator FadeController(){

@@ -12,7 +12,6 @@ public class QTEManager : MonoBehaviour
     public float QTE_Length = 6;
     public GameObject[] actionsDataBase;
     public List<GameObject> QTE = new List<GameObject>();
-    int combo;
 
     void Awake(){
         spaceShipControls = GetComponent<SpaceShipControls>();
@@ -65,7 +64,8 @@ public class QTEManager : MonoBehaviour
 
         //Show QTE OPEN
         playerUI.Find("QTEOpen").gameObject.SetActive(true);
-
+        TextMeshProUGUI combo = playerUI.Find("Combo").GetComponent<TextMeshProUGUI>();
+        combo.text = spaceShipControls.combo.ToString();
         //Gray out unused icon
         switch(gameObject.GetComponent<SpaceShipControls>().stance){
             case SpaceShipControls.Stance.Attack :
@@ -78,6 +78,10 @@ public class QTEManager : MonoBehaviour
             break;
         }
         
+    }
+    void UpdateCombo(){
+        GameManager.instance.PlayersUIs[gameObject.GetComponent<Player>().id]
+        .transform.Find("Combo").GetComponent<TextMeshProUGUI>().text = spaceShipControls.combo.ToString();
     }
 
     public void ReversePlayerUi(){
@@ -131,26 +135,30 @@ public class QTEManager : MonoBehaviour
         if(QTE.Count == 0){
             HideAimMessag();
             ReversePlayerUi();
-            spaceShipControls.QuitQTE(part,combo);
-            combo = 0;
+            UpdateCombo();
+            spaceShipControls.QuitQTE(part);
+            UpdateCombo();
         }
     }
     void UpdateQte(Action.inputs action){
         if(QTE.Count > 0){
-            if(QTE.Count == 1){
-                ShowAimMessage();
-            }
             if(QTE[0].GetComponent<Action>().input == action){
-                combo++;
+                spaceShipControls.combo++;
                 QTE.RemoveAt(0);
                 DisplayQTE();
             }
             else{
-                combo = 0;
+                spaceShipControls.combo = 0;
             }
-        }else{
+            if(QTE.Count == 0){
+                ShowAimMessage();
+            }
             
         }
+        else{
+            
+        }
+        UpdateCombo();
     }
 
     public void ShowAimMessage(){

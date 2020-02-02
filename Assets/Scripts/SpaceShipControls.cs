@@ -12,6 +12,7 @@ public class SpaceShipControls : MonoBehaviour
     PartsManager partsManager;
     Player player;
     int enemyId;
+    public int combo;
 
     void Awake(){
         qte_Manager = GetComponent<QTEManager>();
@@ -29,26 +30,31 @@ public class SpaceShipControls : MonoBehaviour
         qte_Manager.GenerateQTE();
     }
 
-    public void QuitQTE(PartsManager.PARTS targetedPart,int combo){
+    public void QuitQTE(PartsManager.PARTS targetedPart){
         playerInput.SwitchCurrentActionMap("Player");
-        ExecuteAction(targetedPart,combo);
+        ExecuteAction(targetedPart);
 
     }
     void OnAttack(){
-        stance = Stance.Attack;
-        StartQTE();
+        if(GameManager.instance.gameState == GameManager.GAME_STATES.IN_GAME){
+            stance = Stance.Attack;
+            StartQTE();
+        }
     }
     void OnRepair(){
-        stance = Stance.Repair;
-        StartQTE();
+        if(GameManager.instance.gameState == GameManager.GAME_STATES.IN_GAME){
+            stance = Stance.Repair;
+            StartQTE();
+        }
     }
 
-    void ExecuteAction(PartsManager.PARTS targetedPart,int combo){
+    void ExecuteAction(PartsManager.PARTS targetedPart){
         int amount = player.actionAmount + combo;
         if(stance == Stance.Attack){
             PartsManager.instance.DamagePart(enemyId,targetedPart,amount);
         }else{
             PartsManager.instance.RepairPart(player.id,targetedPart,amount);
+            combo = 0;
         }
     }
 }

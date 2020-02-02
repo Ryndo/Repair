@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
         IN_GAME,
         AFTER_GAME
     }
-
+    public int winner;
     public GAME_STATES gameState;
 
     public GameObject[] QTEZones;
@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public Color[] activePlayersColors;
 
     public static GameManager instance;
+    bool ended;
 
     void Awake(){
         if(instance == null && instance != this){
@@ -47,9 +48,17 @@ public class GameManager : MonoBehaviour
 
             break;
             case GAME_STATES.AFTER_GAME :
-                print("Game OVER");
+                endGame();
             break;
 
         }
+    }
+    void endGame(){
+        if(!ended){
+            ended = true;
+            BlackFade.instance.FadeToScene("End");
+            
+        }
+        
     }
 }

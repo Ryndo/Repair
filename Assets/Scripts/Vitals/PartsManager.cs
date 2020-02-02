@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class PartsManager : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class PartsManager : MonoBehaviour
     public Dictionary<int,Dictionary<PARTS,int>> playersPartsDic = new Dictionary<int, Dictionary<PARTS, int>>();
     [SerializeField]
     public SpaceShip[] spaceShips;
+    public GameObject laser;
 
     [Space]
     [Header("PartsDamageUI")]
@@ -61,10 +63,27 @@ public class PartsManager : MonoBehaviour
     }
 
     public void DamagePart(int playerID, PARTS part, int damages){
-/*         Transform cannon = playerID == 0 ? spaceShips[1].cannon : spaceShips[1].cannon;
+        int id = playerID == 0 ? 1 : 0;
+        Transform cannon = spaceShips[id].cannon;
+        Vector3 target;
         if(part == PARTS.CANNON){
-            cannon.LookAt(spaceShips[playerID].cannon.position);
-        } */
+            target = spaceShips[playerID].cannon.position;
+        }
+        else if(part == PARTS.COCKPIT){
+            target = spaceShips[playerID].cockpit.position;
+        }
+        else if(part == PARTS.ENGINE){
+            target = spaceShips[playerID].engine.position;
+        }
+        else{
+            target = spaceShips[playerID].repairModule.position;
+        }
+        target.y = cannon.transform.position.y;
+        cannon.LookAt(target);
+        cannon.Rotate(0,-180,0);
+        GameObject laserGO = Instantiate(laser,spaceShips[id].firePoint.position,spaceShips[id].firePoint.rotation,spaceShips[id].firePoint);
+        laserGO.GetComponentInChildren<LineRenderer>().SetPosition(0,spaceShips[id].firePoint.position);
+        laserGO.GetComponentInChildren<LineRenderer>().SetPosition(1,target);
         int damagesToApply = damages;
 
         bool hasCritted = false;
@@ -98,7 +117,13 @@ public class PartsManager : MonoBehaviour
         //Affect display
         ShowJuice(damageDisplay,PartsManager.DAMAGETYPE.DAMAGE,part, playerID);
 
-        if(playersPartsDic[playerID][part] <= 0){
+        
+        int destroyedParts = 0;
+        for(int i = 0 ; i < 4 ; i++){
+            destroyedParts += playersPartsDic[playerID][(PARTS)i] <= 0 ? 1 : 0;
+        }
+        if(destroyedParts == 4){
+            GameManager.instance.winner = playerID == 0 ? 1 : 0;
             GameManager.instance.gameState = GameManager.GAME_STATES.AFTER_GAME;
         }
     }
@@ -107,11 +132,13 @@ public class PartsManager : MonoBehaviour
         int tmpHealth = playersPartsDic[playerID][part] + repairAmount;
         if(tmpHealth > 100){
             playersPartsDic[playerID][part] = 100;
-        }else{
+            ShowJuice("+"+repairAmount.ToString(),PartsManager.DAMAGETYPE.HEAL,part, playerID);
+        }else if(playersPartsDic[playerID][part] > 0){
             playersPartsDic[playerID][part] += repairAmount;
+            ShowJuice("+"+repairAmount.ToString(),PartsManager.DAMAGETYPE.HEAL,part, playerID);
         }
         //Affect display
-        ShowJuice("+"+repairAmount.ToString(),PartsManager.DAMAGETYPE.HEAL,part, playerID);
+        
     }
 
     public void ShowJuice(string _text, DAMAGETYPE _damageType, PARTS part, int playerID){
@@ -168,5 +195,6 @@ public class SpaceShip
     public Transform repairModule;
     [SerializeField]
     public Transform engine;
+    public Transform firePoint;
 
 }

@@ -296,6 +296,52 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "EndMenu",
+            "id": "37a48577-9c9d-4a00-aaff-1622c63bfb3d",
+            "actions": [
+                {
+                    "name": "Replay",
+                    "type": "Button",
+                    "id": "714d9da3-63d6-4490-956f-77fe34081446",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Menu",
+                    "type": "Button",
+                    "id": "e74dcc7a-19db-49c5-bc7b-e21479fad729",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e213f352-aa59-46c0-8782-99e65c0587e8",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Replay",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c02646fa-dc7f-4c95-96da-cf53789957d3",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
