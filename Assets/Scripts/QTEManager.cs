@@ -88,28 +88,44 @@ public class QTEManager : MonoBehaviour
     }
 
     void OnA(){
-        UpdateQte(Action.inputs.A);
+        if(GameManager.instance.gameState == GameManager.GAME_STATES.IN_GAME){
+            UpdateQte(Action.inputs.A);
+        }
     }
     void OnB(){
-        UpdateQte(Action.inputs.B);
+        if(GameManager.instance.gameState == GameManager.GAME_STATES.IN_GAME){
+            UpdateQte(Action.inputs.B);
+        }
     }
     void OnY(){
-        UpdateQte(Action.inputs.Y);
+        if(GameManager.instance.gameState == GameManager.GAME_STATES.IN_GAME){
+            UpdateQte(Action.inputs.Y);
+        }
     }
     void OnX(){
-        UpdateQte(Action.inputs.X);
+        if(GameManager.instance.gameState == GameManager.GAME_STATES.IN_GAME){
+            UpdateQte(Action.inputs.X);
+        }
     }
     void OnAimEngine(){
-        UpdateTargetedpart(PartsManager.PARTS.ENGINE);    
+        if(GameManager.instance.gameState == GameManager.GAME_STATES.IN_GAME){
+            UpdateTargetedpart(PartsManager.PARTS.ENGINE);
+        }
     }
     void OnAimCockpit(){
-        UpdateTargetedpart(PartsManager.PARTS.COCKPIT);    
+        if(GameManager.instance.gameState == GameManager.GAME_STATES.IN_GAME){
+            UpdateTargetedpart(PartsManager.PARTS.COCKPIT);   
+        }
     }
     void OnAimCannon(){
-        UpdateTargetedpart(PartsManager.PARTS.CANNON);    
+        if(GameManager.instance.gameState == GameManager.GAME_STATES.IN_GAME){
+            UpdateTargetedpart(PartsManager.PARTS.CANNON); 
+        }
     }
     void OnAimRepairModule(){
-        UpdateTargetedpart(PartsManager.PARTS.REPAIR_MODULE);    
+        if(GameManager.instance.gameState == GameManager.GAME_STATES.IN_GAME){
+            UpdateTargetedpart(PartsManager.PARTS.REPAIR_MODULE);  
+        }
     }
     void UpdateTargetedpart(PartsManager.PARTS part){
         if(QTE.Count == 0){
