@@ -23,6 +23,8 @@ public class PartsManager : MonoBehaviour
     [SerializeField]
     public SpaceShip[] spaceShips;
     public GameObject laser;
+    public GameObject impact;
+    public GameObject heal;
 
     [Space]
     [Header("PartsDamageUI")]
@@ -108,6 +110,11 @@ public class PartsManager : MonoBehaviour
             damagesToApply = 0;
             //ShowMiss();
         }
+        else{
+            GameObject impactGo = Instantiate(impact,target,impact.transform.rotation);
+            impactGo.transform.LookAt(spaceShips[id].firePoint.position);
+            Destroy(impactGo,5f);
+        }
 
         playersPartsDic[playerID][part] -= damagesToApply;
 
@@ -136,12 +143,14 @@ public class PartsManager : MonoBehaviour
             currentTime -= Time.deltaTime;
             yield return null;
         }
+        
         currentTime = 0;
         while(currentTime < time){
             line.SetPosition(0,Vector3.Lerp(end,start,(currentTime/time)));
             currentTime += Time.deltaTime;
             yield return null;
         }
+        Destroy(line.transform.parent.gameObject);
     }
 
     public void RepairPart(int playerID, PARTS part, int repairAmount){
@@ -153,6 +162,7 @@ public class PartsManager : MonoBehaviour
             playersPartsDic[playerID][part] += repairAmount;
             ShowJuice("+"+repairAmount.ToString(),PartsManager.DAMAGETYPE.HEAL,part, playerID);
         }
+        Destroy(Instantiate(heal,GetPartGameObject(part,playerID).transform.position,heal.transform.rotation),5);
         //Affect display
         
     }

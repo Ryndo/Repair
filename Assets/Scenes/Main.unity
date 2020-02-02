@@ -1901,6 +1901,8 @@ MonoBehaviour:
     engine: {fileID: 805724334}
     firePoint: {fileID: 800695637}
   laser: {fileID: 3818048387505461736, guid: 23e494730961cb7419cdd6d831faa644, type: 3}
+  impact: {fileID: 5944521809008495138, guid: acbc3a5cbc33ee94398e8f34db1407d9, type: 3}
+  heal: {fileID: 4296725320954557754, guid: 5648c9db58c0d644ab7b98cba302e4b3, type: 3}
   P1Engine: {fileID: 23327787}
   P1Cannon: {fileID: 1291643753}
   P1Cockpit: {fileID: 2113654335}
