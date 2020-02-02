@@ -1892,17 +1892,18 @@ MonoBehaviour:
   spaceShips:
   - cockpit: {fileID: 2113654336}
     cannon: {fileID: 5381996124248006105}
-    repairModule: {fileID: 1810970668}
+    repairModule: {fileID: 1426312934}
     engine: {fileID: 23327788}
     firePoint: {fileID: 760171276}
   - cockpit: {fileID: 264025119}
     cannon: {fileID: 1041274250}
-    repairModule: {fileID: 2039949638}
+    repairModule: {fileID: 1752993279}
     engine: {fileID: 805724334}
     firePoint: {fileID: 800695637}
   laser: {fileID: 3818048387505461736, guid: 23e494730961cb7419cdd6d831faa644, type: 3}
   impact: {fileID: 5944521809008495138, guid: acbc3a5cbc33ee94398e8f34db1407d9, type: 3}
   heal: {fileID: 4296725320954557754, guid: 5648c9db58c0d644ab7b98cba302e4b3, type: 3}
+  sparks: {fileID: 1595659224648108415, guid: 186214dc8f9bf18488c0f6773ed3c8f6, type: 3}
   P1Engine: {fileID: 23327787}
   P1Cannon: {fileID: 1291643753}
   P1Cockpit: {fileID: 2113654335}
@@ -5995,6 +5996,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1532386414}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1426312934 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: fc8f143091ecab142a0a09fc23f97d90,
+    type: 3}
+  m_PrefabInstance: {fileID: 1532386414}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1469162606
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6696,6 +6703,12 @@ CanvasRenderer:
 --- !u!1 &1752993278 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: fc8f143091ecab142a0a09fc23f97d90,
+    type: 3}
+  m_PrefabInstance: {fileID: 408296187}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1752993279 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: fc8f143091ecab142a0a09fc23f97d90,
     type: 3}
   m_PrefabInstance: {fileID: 408296187}
   m_PrefabAsset: {fileID: 0}

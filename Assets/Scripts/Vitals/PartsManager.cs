@@ -25,6 +25,7 @@ public class PartsManager : MonoBehaviour
     public GameObject laser;
     public GameObject impact;
     public GameObject heal;
+    public GameObject sparks;
 
     [Space]
     [Header("PartsDamageUI")]
@@ -129,7 +130,10 @@ public class PartsManager : MonoBehaviour
         if(hasMissed){damageDisplay = "MISS!";}
         //Affect display
         ShowJuice(damageDisplay,PartsManager.DAMAGETYPE.DAMAGE,part, playerID);
-
+        if(playersPartsDic[playerID][part] <= 0){
+            GameObject sparksGO = Instantiate(sparks,GetPartGameObject(part,playerID).transform.position,sparks.transform.rotation);
+            sparksGO.transform.LookAt(GetPartGameObject(PARTS.CANNON,id).transform.position);
+        }
         
         int destroyedParts = 0;
         for(int i = 0 ; i < 4 ; i++){
