@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1892,17 +1892,18 @@ MonoBehaviour:
   spaceShips:
   - cockpit: {fileID: 2113654336}
     cannon: {fileID: 5381996124248006105}
-    repairModule: {fileID: 1810970668}
+    repairModule: {fileID: 1426312934}
     engine: {fileID: 23327788}
     firePoint: {fileID: 760171276}
   - cockpit: {fileID: 264025119}
     cannon: {fileID: 1041274250}
-    repairModule: {fileID: 2039949638}
+    repairModule: {fileID: 1752993279}
     engine: {fileID: 805724334}
     firePoint: {fileID: 800695637}
   laser: {fileID: 3818048387505461736, guid: 23e494730961cb7419cdd6d831faa644, type: 3}
   impact: {fileID: 5944521809008495138, guid: acbc3a5cbc33ee94398e8f34db1407d9, type: 3}
   heal: {fileID: 4296725320954557754, guid: 5648c9db58c0d644ab7b98cba302e4b3, type: 3}
+  sparks: {fileID: 1595659224648108415, guid: 186214dc8f9bf18488c0f6773ed3c8f6, type: 3}
   P1Engine: {fileID: 23327787}
   P1Cannon: {fileID: 1291643753}
   P1Cockpit: {fileID: 2113654335}
@@ -2236,6 +2237,52 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &516924777
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 516924779}
+  - component: {fileID: 516924778}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &516924778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516924777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46615a1d89461ed438cc9ab1a13b01f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds: []
+  musiques: []
+  MusicMixer: {fileID: 24300002, guid: 1cda04c0b0b3e3b40bdf3dfca7f2c99a, type: 2}
+--- !u!4 &516924779
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516924777}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 26.141693, y: 46.977966, z: -109.450615}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &589054610
 GameObject:
   m_ObjectHideFlags: 0
@@ -6083,6 +6130,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1532386414}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1426312934 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: fc8f143091ecab142a0a09fc23f97d90,
+    type: 3}
+  m_PrefabInstance: {fileID: 1532386414}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1469162606
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6785,6 +6838,12 @@ CanvasRenderer:
 --- !u!1 &1752993278 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: fc8f143091ecab142a0a09fc23f97d90,
+    type: 3}
+  m_PrefabInstance: {fileID: 408296187}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1752993279 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: fc8f143091ecab142a0a09fc23f97d90,
     type: 3}
   m_PrefabInstance: {fileID: 408296187}
   m_PrefabAsset: {fileID: 0}
