@@ -65,7 +65,7 @@ public class QTEManager : MonoBehaviour
         //Show QTE OPEN
         playerUI.Find("QTEOpen").gameObject.SetActive(true);
         TextMeshProUGUI combo = playerUI.Find("Combo").GetComponent<TextMeshProUGUI>();
-        combo.text = spaceShipControls.combo.ToString();
+        combo.text = "x" + spaceShipControls.combo.ToString();
         //Gray out unused icon
         switch(gameObject.GetComponent<SpaceShipControls>().stance){
             case SpaceShipControls.Stance.Attack :

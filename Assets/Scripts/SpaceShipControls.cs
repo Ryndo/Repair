@@ -12,7 +12,7 @@ public class SpaceShipControls : MonoBehaviour
     PartsManager partsManager;
     Player player;
     int enemyId;
-    public int combo;
+    public int combo = 0;
 
     void Awake(){
         qte_Manager = GetComponent<QTEManager>();

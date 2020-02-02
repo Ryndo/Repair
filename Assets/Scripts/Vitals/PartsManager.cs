@@ -116,7 +116,12 @@ public class PartsManager : MonoBehaviour
             Destroy(impactGo,5f);
         }
 
-        playersPartsDic[playerID][part] -= damagesToApply;
+        if(playersPartsDic[playerID][part] - damagesToApply >= 0){
+            playersPartsDic[playerID][part] -= damagesToApply;
+        }else{
+            playersPartsDic[playerID][part] = 0;
+        }
+        
 
         //prepare display
         string damageDisplay = "-"+damagesToApply.ToString();
